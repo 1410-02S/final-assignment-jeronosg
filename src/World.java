@@ -71,7 +71,7 @@ public class World {
             System.out.print("  Reproduction Rate: " + creature.reproductionRate());
             System.out.print("  Chance of Death: " + creature.chanceOfDeath());
             System.out.print("  Amount Eaten: " + creature.eat(0));
-            System.out.print("  Status: " + creature.status());
+            System.out.print("  Alive: " + creature.status());
             System.out.println(" ");
             System.out.println(" ");
         }
