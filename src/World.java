@@ -53,27 +53,4 @@ public class World {
             return "Forest";
         }
     }
-
-    public static void main(String[] args) throws Exception {
-        World world = new World();
-        int amountOfCreatures = world.randomCreature();
-        int amountOfFoodSpawned = world.randomFoodSpawn();
-        String worldBiome = world.biome();
-        System.out.println("Amount of Creatures: " + amountOfCreatures);
-        System.out.println("Food Spawned: " + amountOfFoodSpawned);
-        System.out.println("Biome: " + worldBiome);
-        System.out.println("");
-        
-        for (int i = 1; i < amountOfCreatures + 1; i++){
-            Creature creature = new Creature();
-            System.out.println("Creature Number: " + i);
-            System.out.print("Creature Type: " + creature.creatureType());
-            System.out.print("  Reproduction Rate: " + creature.reproductionRate());
-            System.out.print("  Chance of Death: " + creature.chanceOfDeath());
-            System.out.print("  Amount Eaten: " + creature.eat(0));
-            System.out.print("  Alive: " + creature.status());
-            System.out.println(" ");
-            System.out.println(" ");
-        }
-    }
 }
