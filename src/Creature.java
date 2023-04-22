@@ -10,30 +10,30 @@
 
  // Start of Progam
  public class Creature {
-    public String creatureType() {
+    public int creatureType() {
         Random rand = new Random();
         int randNum = rand.nextInt(100);
         if (randNum < 50){
-            return "Reptile";
-            // Return Reptile if the random number is under 50
+            return 0;
+            // Return Reptile if the random number is under 50 (Repitle = 0)
         } else if (randNum >= 50){
-            return "Mammal";
-            // Return Mammal if the random number is over 50
+            return 1;
+            // Return Mammal if the random number is over 50 (Mammal = 1)
         } else {
-            return "Reptile";
-            // Fail Safe. Defualt: Repitle
+            return 0;
+            // Fail Safe. Defualt: Repitle (Reptile = 0)
         }
     }
 
     int amountEaten;
-    public boolean status() {
+    public int status() {
         if (eat(amountEaten) == 0){
-            return false;
-            // Creature will die (false) if it does not eat.
+            return 0;
+            // Creature will die (false) if it does not eat. (False = 0)
         } else {
             amountEaten = amountEaten - 1;
-            return true;
-            // Creature lives if it eats. Take away 1 from amountEaten.
+            return 1;
+            // Creature lives if it eats. Take away 1 from amountEaten. (True = 1)
         }
     }
 

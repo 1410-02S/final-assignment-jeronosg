@@ -15,6 +15,7 @@ public class World {
     int biomeModifier = 0;
     int amountOfCreatures = 0;
     int gameDay = 0;
+    int[][] createCreatures = new int[6][5];
 
     // Amount of Creatures Spawned
     public int randomCreature(){
@@ -77,17 +78,49 @@ public class World {
             return "Forest";
         }
     }
+    public void initializeCreatures(){
+        for (int i = 0; i <= amountOfCreatures; i++){
+            Creature creature = new Creature();
+            createCreatures[i][0] = creature.creatureType();
+            createCreatures[i][1] = creature.reproductionRate();
+            createCreatures[i][2] = creature.chanceOfDeath();
+            createCreatures[i][3] = creature.eat(0);
+            createCreatures[i][4] = creature.status();
+        }
+        printData();
+    }
 
     public void printData() {
         System.out.println("Day: " + gameDay);
         for (int i = 1; i < amountOfCreatures + 1; i++){
-            Creature creature = new Creature();
+            // Set Game Day Modifier For Hunger
+            int hungerLevel = createCreatures[i][3] - gameDay;
+            boolean alive = true;
+            while (createCreatures[i][4] != 0){
+                if (hungerLevel <= 0){
+                    alive = false;
+                    break;
+                } else {
+                    alive = true;
+                    break;
+                }
+            }
+            // Creature Number
             System.out.println("Creature Number: " + i);
-            System.out.print("Creature Type: " + creature.creatureType());
-            System.out.print("  Reproduction Rate: " + creature.reproductionRate());
-            System.out.print("  Chance of Death: " + creature.chanceOfDeath());
-            System.out.print("  Amount Eaten: " + creature.eat(0));
-            System.out.print("  Alive: " + creature.status());
+            // Creature Type
+            if (createCreatures[i][0] == 1){
+                System.out.println("Creature Type: Mammal");
+            } else {
+                System.out.println("Creature Type: Reptile");
+            }
+            // Reproduction Rate
+            System.out.print("  Reproduction Rate: " + createCreatures[i][1]);
+            // Chance of Death
+            System.out.print("  Chance of Death: " + createCreatures[i][2]);
+            // Amount Eaten
+            System.out.print("  Amount Eaten: " + hungerLevel);
+            // Alive or Dead
+            System.out.print("  Alive or Dead: " + alive);
             System.out.println(" ");
             System.out.println(" ");
         }

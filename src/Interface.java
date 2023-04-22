@@ -46,7 +46,8 @@ public class Interface {
                     System.out.println("Biome: " + world.biome);
                     System.out.println("");
                     
-                    world.printData();
+                    world.initializeCreatures();
+
 
                     String leaveWorld = "";
                     while(leaveWorld != "L"){
