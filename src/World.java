@@ -15,6 +15,7 @@ public class World {
     int biomeModifier = 0;
     int amountOfCreatures = 0;
     int gameDay = 0;
+    int randomFoodSpawn;
     int[][] createCreatures = new int[6][5];
 
     // Amount of Creatures Spawned
@@ -28,7 +29,7 @@ public class World {
     // Amount of Food Spawned Based on Biome
     public int randomFoodSpawn(){
         Random rand = new Random();
-        int randomFoodSpawn = rand.nextInt(10) + 1;
+        randomFoodSpawn = rand.nextInt(10) + 1;
         if (biome() == "Desert") {
             biomeModifier = -2;
             return randomFoodSpawn + biomeModifier;
@@ -94,10 +95,10 @@ public class World {
         System.out.println("Day: " + gameDay);
         for (int i = 1; i < amountOfCreatures + 1; i++){
             // Set Game Day Modifier For Hunger
-            int hungerLevel = createCreatures[i][3] - gameDay;
+            createCreatures[i][3] = createCreatures[i][3] - gameDay;
             boolean alive = true;
-            while (createCreatures[i][4] != 0){
-                if (hungerLevel <= 0){
+            while (createCreatures[i][3] != 0){
+                if (createCreatures[i][3] <= 0){
                     alive = false;
                     break;
                 } else {
@@ -118,12 +119,31 @@ public class World {
             // Chance of Death
             System.out.print("  Chance of Death: " + createCreatures[i][2]);
             // Amount Eaten
-            System.out.print("  Amount Eaten: " + hungerLevel);
+            System.out.print("  Amount Eaten: " + createCreatures[i][3]);
             // Alive or Dead
             System.out.print("  Alive or Dead: " + alive);
             System.out.println(" ");
             System.out.println(" ");
         }
         gameDay = gameDay + 1;
+    }
+
+    public void consumeFood(){
+        int consumed = 0;
+        if (randomFoodSpawn > 0){
+            while (consumed < randomFoodSpawn){
+                for(int i = 1; i < amountOfCreatures + 1; i++){
+                    if (createCreatures[i][4] == 0){
+                        break;
+                    } else {
+                        createCreatures[i][3] = createCreatures[i][3] + 1;
+                        consumed = consumed + 1;
+                    }
+                }
+            }
+            randomFoodSpawn = randomFoodSpawn - consumed;
+        } else {
+            System.out.println("No Food Remaining");
+        }
     }
 }

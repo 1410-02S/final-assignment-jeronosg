@@ -36,7 +36,7 @@ public class Interface {
                 case "N":
                     Scanner inGame = new Scanner(System.in);
                     System.out.println("New World Created:");
-                    System.out.println("Type D to go to Next Day, Press L to Leave");
+                    System.out.println("Type D to go to Next Day, Press F to Feed Creatures, Press L to Leave");
                     World world = new World();
                     int amountOfCreatures = world.randomCreature();
                     int amountOfFoodSpawned = world.randomFoodSpawn();
@@ -68,11 +68,20 @@ public class Interface {
                                 world.printData();
 
                                 break;
+                            
+                            // Feed Creatues
+                            case "F": 
+                                System.out.println("Feeding Creatures...");
+                                System.out.println("");
+                                world.consumeFood();
+                                System.out.println("1 Day Later...");
+                                world.printData();
 
                             // List of Commands
                             case "LIST":
                                 System.out.println("D - Next Day");
                                 System.out.println("L - Leave World");
+                                System.out.println("F - Feed Creatures");
                                 System.out.println("LIST - List of Commands");
                                 System.out.println("");
                                 break;
