@@ -145,4 +145,14 @@ public class World {
             System.out.println("There is no food to consume.");
         }
     }
+
+    public void gatherFood(){
+        Random rand = new Random();
+        int randomFoodModifer = rand.nextInt(5) + 1;
+        randomFoodSpawn = randomFoodSpawn + randomFoodModifer;
+        System.out.println("One Day Later...");
+        System.out.println("Food Gathered: " + randomFoodModifer);
+        System.out.println("Food Remaining: " + randomFoodSpawn);
+        printData();
+    }
 }
