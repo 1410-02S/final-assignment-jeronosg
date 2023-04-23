@@ -95,7 +95,7 @@ public class World {
         System.out.println("Day: " + gameDay);
         for (int i = 1; i < amountOfCreatures + 1; i++){
             // Set Game Day Modifier For Hunger
-            createCreatures[i][3] = createCreatures[i][3] - gameDay;
+            createCreatures[i][3] = createCreatures[i][3] - 1;
             boolean alive = true;
             while (createCreatures[i][3] != 0){
                 if (createCreatures[i][3] <= 0){
@@ -110,9 +110,9 @@ public class World {
             System.out.println("Creature Number: " + i);
             // Creature Type
             if (createCreatures[i][0] == 1){
-                System.out.println("Creature Type: Mammal");
+                System.out.print("Creature Type: Mammal");
             } else {
-                System.out.println("Creature Type: Reptile");
+                System.out.print("Creature Type: Reptile");
             }
             // Reproduction Rate
             System.out.print("  Reproduction Rate: " + createCreatures[i][1]);
@@ -129,21 +129,20 @@ public class World {
     }
 
     public void consumeFood(){
-        int consumed = 0;
-        if (randomFoodSpawn > 0){
-            while (consumed < randomFoodSpawn){
-                for(int i = 1; i < amountOfCreatures + 1; i++){
-                    if (createCreatures[i][4] == 0){
-                        break;
-                    } else {
-                        createCreatures[i][3] = createCreatures[i][3] + 1;
-                        consumed = consumed + 1;
-                    }
+        if (randomFoodSpawn > 0) {
+            for (int i = 1; i < amountOfCreatures + 1; i++){
+                if (createCreatures[i][3] > 0){
+                    createCreatures[i][3] = createCreatures[i][3] + 1;
+                    randomFoodSpawn = randomFoodSpawn - 1;
+                } else {
+                    System.out.println("Creature Number: " + i + " is dead. Therefore did not recieve food.");
                 }
             }
-            randomFoodSpawn = randomFoodSpawn - consumed;
+            System.out.println("One Day Later...");
+            System.out.println("Food Remaining: " + randomFoodSpawn);
+            printData();
         } else {
-            System.out.println("No Food Remaining");
+            System.out.println("There is no food to consume.");
         }
     }
 }

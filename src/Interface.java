@@ -71,11 +71,9 @@ public class Interface {
                             
                             // Feed Creatues
                             case "F": 
-                                System.out.println("Feeding Creatures...");
                                 System.out.println("");
                                 world.consumeFood();
-                                System.out.println("1 Day Later...");
-                                world.printData();
+                                System.out.println("");
 
                             // List of Commands
                             case "LIST":
