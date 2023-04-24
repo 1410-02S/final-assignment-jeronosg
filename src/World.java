@@ -129,21 +129,23 @@ public class World {
     }
 
     public void consumeFood(){
-        if (randomFoodSpawn > 0) {
+        while(randomFoodSpawn > 0){
             for (int i = 1; i < amountOfCreatures + 1; i++){
                 if (createCreatures[i][3] > 0){
                     createCreatures[i][3] = createCreatures[i][3] + 1;
                     randomFoodSpawn = randomFoodSpawn - 1;
                 } else {
-                    System.out.println("Creature Number: " + i + " is dead. Therefore did not recieve food.");
+                    System.out.println("Creatuer Number: " + i + " is dead. Therefore did not recieve food.");
+                    System.out.println("");
                 }
             }
-            System.out.println("One Day Later...");
-            System.out.println("Food Remaining: " + randomFoodSpawn);
-            printData();
-        } else {
-            System.out.println("There is no food to consume.");
         }
+        if (randomFoodSpawn <= 0){
+            System.out.println("There is no food to comsume.");
+        }
+        System.out.println("One Day Later...");
+        System.out.println("Food Remaining: " + randomFoodSpawn);
+        printData();
     }
 
     public void gatherFood(){
