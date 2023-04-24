@@ -74,6 +74,7 @@ public class Interface {
                                 System.out.println("");
                                 world.consumeFood();
                                 System.out.println("");
+                                break;
                             
                             // Gather More Food
                             case "G":
